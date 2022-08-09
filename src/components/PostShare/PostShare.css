@@ -1,0 +1,18 @@
+.postshare {
+  display: flex;
+  gap: 1rem;
+  background-color: #f6f5f58c;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.postshare > img {
+  border-radius: 50%;
+  width: 4rem;
+  height: 3rem;
+}
+.postshare > div {
+  display: flex;
+  flex-flow: column;
+  width: 90%;
+  gap: 1rem;
+}

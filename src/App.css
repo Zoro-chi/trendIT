@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.app {
+  overflow: hidden;
+  color: rgb(46, 43, 43);
+  background-color: #f3f3f3;
+  padding: 1rem;
+}
+.blur {
+  position: absolute;
+  width: 22rem;
+  height: 14rem;
+  border-radius: 50%;
+  background: aquamarine;
+  filter: blur(72px);
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: cadetblue;
+  padding: 1rem;
+  align-self: center;
+  transition: all 100ms ease-out;
+}
+.button:hover {
+  cursor: pointer;
+  color: cadetblue;
+  background: transparent;
+  border: 2px solid cadetblue;
+}
