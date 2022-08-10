@@ -4,6 +4,8 @@ import { MdSlowMotionVideo } from "react-icons/md";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { GoCalendar } from "react-icons/go";
 import { FaTimes } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { uploadImage } from "../../Actions/uploadActions.js";
 
 import "./PostShare.css";
 import profilepic from "../../images/profilepic.jpg";
@@ -11,13 +13,36 @@ import profilepic from "../../images/profilepic.jpg";
 function PostShare() {
   const [image, setImage] = useState(null);
   const imageRef = useRef();
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const desc = useRef();
+  const dispatch = useDispatch();
 
   const onImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       let img = e.target.files[0];
-      setImage({
-        image: URL.createObjectURL(img),
-      });
+      setImage(img);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value,
+    };
+    // THIS IS TO STORE MULTIMEDIA ON SERVER MEM AS MONGODB CANT
+    if (image) {
+      const data = new FormData();
+      const filename = Date.now() + image.name;
+      data.append("name", filename);
+      data.append("file", image);
+      newPost.image = filename;
+      console.log(newPost);
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -25,7 +50,7 @@ function PostShare() {
     <div className="postshare">
       <img src={profilepic} alt="" />
       <div>
-        <input type="text" placeholder="What's up?" />
+        <input ref={desc} type="text" placeholder="What's up?" required />
         <div className="postOptions">
           <div
             className="option"
@@ -47,7 +72,9 @@ function PostShare() {
             <GoCalendar style={{ height: "20px", width: "20px" }} />
             Schedule
           </div>
-          <button className="button psButton">Share</button>
+          <button className="button psButton" onClick={handleSubmit}>
+            Share
+          </button>
           <div style={{ display: "none" }}>
             <input
               type="file"
@@ -60,7 +87,7 @@ function PostShare() {
         {image && (
           <div className="previewImage">
             <FaTimes onClick={() => setImage(null)} />
-            <img src={image.image} alt="" />
+            <img src={URL.createObjectURL(image)} alt="" />
           </div>
         )}
       </div>
