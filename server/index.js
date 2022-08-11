@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 dotenv.config();
 
-mongoose.connection
-  .on(process.env.MONGOOSE_CONNECTION_STRING, {
+mongoose
+  .connect(process.env.MONGOOSE_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -36,13 +36,13 @@ app.use("/api/user", UserRoute);
 app.use("/api/post", PostRoute);
 app.use("/api/upload", uploadRoute);
 
-// HEROKU DEPLOY
-if (
-  process.env.NODE_ENV === "production" ||
-  process.env.NODE_ENV === "staging"
-) {
-  app.use(express.static("client-side/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/client-side/build/index.html"));
-  });
-}
+// // HEROKU DEPLOY
+// if (
+//   process.env.NODE_ENV === "production" ||
+//   process.env.NODE_ENV === "staging"
+// ) {
+//   app.use(express.static("client-side/build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname + "/client-side/build/index.html"));
+//   });
+// }
