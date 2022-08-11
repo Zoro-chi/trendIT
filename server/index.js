@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGOOSE_CONNECTION_STRING, {
+mongoose.connection
+  .on(process.env.MONGOOSE_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
