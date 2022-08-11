@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js",
-    "heroku-postbuild": "cd client-side && yarn add && yarn build"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
