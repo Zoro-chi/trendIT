@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./RightSide.css";
 import TrendCard from "../TrendCard/TrendCard.jsx";
@@ -14,7 +15,9 @@ function RightSide(props) {
   return (
     <div className="rightSide">
       <div className="navIcons">
-        <AiOutlineHome />
+        <Link to="../home">
+          <AiOutlineHome />
+        </Link>
         <FiSettings />
         <IoIosNotificationsOutline />
         <BiCommentDetail />

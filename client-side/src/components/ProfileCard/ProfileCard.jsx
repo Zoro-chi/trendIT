@@ -1,42 +1,63 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./ProfileCard.css";
-import profilebanner from "../../images/profilebanner.jpg";
-import profilepic from "../../images/profilepic.jpg";
 
-function ProfileCard() {
-  const profilePage = true;
+function ProfileCard({ location }) {
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const posts = useSelector((state) => state.postReducer.posts);
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div className="profileCard">
       <div className="profileImages">
-        <img src={profilebanner} alt="profile banner" />
-        <img src={profilepic} alt="profile" />
+        <img
+          src={
+            user.coverPicture
+              ? serverPublic + user.coverPicture
+              : serverPublic + "defaultCover.jpg"
+          }
+          alt="profile banner"
+        />
+        <img
+          src={
+            user.coverPicture
+              ? serverPublic + user.profilePicture
+              : serverPublic + "defaultPfp.jpg"
+          }
+          alt="profile"
+        />
       </div>
 
       <div className="profilename">
-        <span> Brad M </span>
-        <span> Smart Contract Developer </span>
+        <span>
+          {user.firstname} {user.lastname}
+        </span>
+        <span> {user.worksAt ? user.worksAt : "Tell us more about you"} </span>
       </div>
 
       <div className="followstatus">
         <hr />
         <div>
           <div className="follow">
-            <span> 5000 </span>
+            <span> {user.following.length} </span>
             <span> Following </span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            <span> 300 </span>
+            <span> {user.followers.length} </span>
             <span> Followers </span>
           </div>
 
-          {profilePage && (
+          {location === "profilePage" && (
             <>
               <div className="vl"></div>
               <div className="follow">
-                <span> 3 </span>
+                <span>
+                  {" "}
+                  {posts.filter((post) => post.userId === user._id).length}{" "}
+                </span>
                 <span> Posts </span>
               </div>
             </>
@@ -44,7 +65,18 @@ function ProfileCard() {
         </div>
         <hr />
       </div>
-      {profilePage ? "" : <span> My Profile </span>}
+      {location === "profilePage" ? (
+        ""
+      ) : (
+        <span>
+          <Link
+            to={`/profile/${user._id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            My Profile
+          </Link>
+        </span>
+      )}
     </div>
   );
 }

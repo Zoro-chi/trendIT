@@ -1,21 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Post.css";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { FaShare } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { likePost } from "../../Api/postRequest";
 
 function Post(props) {
   const { data } = props;
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const [liked, setLiked] = useState(data.likes.includes(user._id));
+  const [likes, setLikes] = useState(data.likes.length);
+
+  const handleLike = () => {
+    setLiked((prev) => !prev);
+    likePost(data._id, user._id);
+    liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
+  };
 
   return (
     <div className="post">
-      <img src={data.img} alt="" />
+      <img
+        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
+        alt=""
+      />
 
       <div className="postReact">
-        <div className="like">
-          {data.liked ? <AiFillHeart /> : <AiOutlineHeart />}
+        <div
+          className="like"
+          style={{ cursor: "pointer" }}
+          onClick={handleLike}
+        >
+          {liked ? <AiFillHeart /> : <AiOutlineHeart />}
         </div>
         <div className="comment">
           <BiCommentDetail />
@@ -25,7 +43,7 @@ function Post(props) {
         </div>
       </div>
 
-      <span style={{ color: "gray" }}>{data.likes} Likes</span>
+      <span style={{ color: "gray" }}>{likes} Likes</span>
 
       <div className="description">
         <span> {data.name} </span>

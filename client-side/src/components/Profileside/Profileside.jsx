@@ -9,7 +9,7 @@ function Profileside() {
   return (
     <div className="profileside">
       <SearchLogo />
-      <ProfileCard />
+      <ProfileCard location="homePage" />
       <FollowersCard />
     </div>
   );
