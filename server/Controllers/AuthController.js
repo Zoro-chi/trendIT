@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
-  req.body.password = hashedPassword;
+  req.body.password = hashedPassword
   const newUser = new UserModel(req.body);
 
   const { username } = req.body;
