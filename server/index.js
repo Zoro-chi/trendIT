@@ -53,9 +53,6 @@ app.use("/api/auth", AuthRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/post", PostRoute);
 app.use("/api/upload", uploadRoute);
-app.get("/", (req, res) => {
-  res.sendFile("Public/index.html");
-});
 
 // HEROKU DEPLOY
 // if (
