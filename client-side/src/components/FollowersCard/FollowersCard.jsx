@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import "./FollowersCard.css";
 import User from "../User/User";
-import { getAllUsers } from "../../Api/userRequest";
+import { getAllUsers } from "../../Api/userRequest.js";
 
 function FollowersCard() {
   const [persons, setPersons] = useState([]);
