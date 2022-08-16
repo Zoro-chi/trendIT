@@ -21,32 +21,19 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() =>
-    mongoose.connection.once("open", () => {
-      console.log("Conection has been made!");
-    })
-  )
-  .catch((error) => console.log(error));
 
-// const connectDB = async () => {
-//   try {
-//     const conn = await mongoose.connect(String(process.env.MONGO_URI), {
-//       useUnifiedTopology: true,
-//       useNewUrlParser: true,
-//     });
-//     console.log(`mongo database is connected!!! ${conn.connection.host} `);
-//   } catch (error) {
-//     console.error(`Error: ${error} `);
-//     process.exit(1);
-//   }
-// };
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(String(process.env.MONGO_URI))
+      
+    console.log(`mongo database is connected!!! ${conn.connection.host} `);
+  } catch (error) {
+    console.error(`Error: ${error} `);
+    process.exit(1);
+  }
+};
 
-// connectDB();
+connectDB();
 
 //   USAGE OF ROUTES
 app.use("/api/auth", AuthRoute);
