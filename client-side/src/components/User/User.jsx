@@ -24,7 +24,7 @@ const User = ({ person, id }) => {
           src={
             person.coverPicture
               ? serverPublic + person.profilePicture
-              : serverPublic + "defaultProfile.png"
+              : serverPublic + "defaultPfp.png"
           }
           alt=""
           className="followerImg"
