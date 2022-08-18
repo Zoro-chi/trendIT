@@ -60,8 +60,8 @@ function PostShare() {
       <img
         src={
           user.coverPicture
-            ? serverPublic + user.profilePicture
-            : serverPublic + "defaultPfp.jpg"
+            ? serverPublic + "/" + user.profilePicture
+            : serverPublic + "/" + "defaultPfp.jpg"
         }
         alt=""
       />

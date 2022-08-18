@@ -15,16 +15,16 @@ function ProfileCard({ location }) {
         <img
           src={
             user.coverPicture
-              ? serverPublic + user.coverPicture
-              : serverPublic + "defaultCover.jpg"
+              ? serverPublic + "/" + user.coverPicture
+              : serverPublic + "/" + "defaultCover.jpg"
           }
           alt="profile banner"
         />
         <img
           src={
             user.coverPicture
-              ? serverPublic + user.profilePicture
-              : serverPublic + "defaultPfp.jpg"
+              ? serverPublic + "/" + user.profilePicture
+              : serverPublic + "/" + "defaultPfp.jpg"
           }
           alt="profile"
         />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaPrescription } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, unFollowUser } from "../../Actions/userAction";
 
@@ -22,9 +23,9 @@ const User = ({ person, id }) => {
       <div>
         <img
           src={
-            person.coverPicture
-              ? serverPublic + person.profilePicture
-              : serverPublic + "defaultPfp.png"
+            FaPrescription.coverPicture
+              ? serverPublic + "/" + person.profilePicture
+              : serverPublic + "/" + "defaultPfp.png"
           }
           alt=""
           className="followerImg"

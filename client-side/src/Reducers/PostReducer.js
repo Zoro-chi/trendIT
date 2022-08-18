@@ -1,3 +1,5 @@
+import { getTimeLinePosts } from "../Api/postRequest.js";
+
 const postReducer = (
   state = {
     posts: [],

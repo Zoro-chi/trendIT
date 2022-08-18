@@ -67,7 +67,6 @@ export const likePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
 
-
   try {
     const post = await PostModel.findById(id);
     if (!post.likes.includes(userId)) {
@@ -109,6 +108,7 @@ export const getTimeLinePosts = async (req, res) => {
         },
       },
     ]);
+
     res.status(200).json(
       currentUserPosts
         .concat(...followingPosts[0].followingPosts)

@@ -23,7 +23,11 @@ function Post(props) {
   return (
     <div className="post">
       <img
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
+        src={
+          data.image
+            ? process.env.REACT_APP_PUBLIC_FOLDER + "/" + data.image
+            : ""
+        }
         alt=""
       />
 
