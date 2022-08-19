@@ -8,9 +8,7 @@
     "install-client": "cd client-side && npm install ",
     "install-server": "cd server && npm install",
     "heroku-postbuild": "npm run install-client && npm run install-server && npm run build",
-    "start": "cd server && node index.js",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d client-side/build"
+    "start": "cd server && node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/Zoro-chi/SM-clone/issues"
   },
-  "homepage": "https://github.com/Zoro-chi/SM-clone#readme",
-  "devDependencies": {
-    "gh-pages": "^4.0.0"
-  }
+  "homepage": "https://github.com/Zoro-chi/SM-clone#readme"
 }
