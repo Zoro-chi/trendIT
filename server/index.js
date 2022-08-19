@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -40,16 +42,20 @@ app.use("/api/post", PostRoute);
 app.use("/api/upload", uploadRoute);
 app.use("/images", express.static("Images"));
 
-// // HEROKU DEPLOY
-// if (
-//   process.env.NODE_ENV === "production" ||
-//   process.env.NODE_ENV === "staging"
-// ) {
-//   app.use(express.static("Public"));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname + "/Public/build/index.html"));
-//   });
-// }
+// HEROKU DEPLOY
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+if (
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "staging"
+) {
+  const root = path.join(__dirname, "../", "client-side", "build");
+  app.use(express.static(root));
+  app.get("*", (req, res) => {
+    res.sendFile("index.html", { root });
+  });
+}
 
 const port = process.env.PORT || 5000;
 
