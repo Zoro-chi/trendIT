@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import "./ProfileCard.css";
+import { getTimelinePosts as gt } from "../../Api/postRequest.js";
 
 function ProfileCard({ location }) {
   const { user } = useSelector((state) => state.authReducer.authData);
   const posts = useSelector((state) => state.postReducer.posts);
+  const [dbPosts, setDbPosts] = useState([]);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const fetchPosts = async () => {
+    let post = gt(user._id);
+    post = await post;
+    return post;
+  };
+
+  useEffect(() => {
+    const post = async () => {
+      let post = fetchPosts();
+      post = await post;
+      // console.log(post.data);
+      setDbPosts(post.data);
+    };
+    post();
+  }, [posts]);
 
   return (
     <div className="profileCard">
@@ -55,8 +73,7 @@ function ProfileCard({ location }) {
               <div className="vl"></div>
               <div className="follow">
                 <span>
-                  {" "}
-                  {posts.filter((post) => post.userId === user._id).length}{" "}
+                  {dbPosts.filter((post) => post.userId === user._id).length}
                 </span>
                 <span> Posts </span>
               </div>

@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 import "./InfoCard.css";
 import ProfileModal from "../ProfileModal/ProfileModal.jsx";
 
 function InfoCard() {
   const [modalOpened, setModalOpened] = useState(false);
+
+  const logout = () => {
+    window.localStorage.clear();
+    window.location.href = "/";
+  };
 
   return (
     <div className="infoCard">
@@ -41,7 +47,9 @@ function InfoCard() {
         <span> @100Devs </span>
       </div>
 
-      <button className="button logoutBtn">Logout</button>
+      <button className="button logoutBtn" onClick={logout}>
+        Logout
+      </button>
     </div>
   );
 }
