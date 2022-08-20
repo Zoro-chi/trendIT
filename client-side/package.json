@@ -2,7 +2,11 @@
   "name": "sm",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:5000"
+    }
+  },
   "dependencies": {
     "@mantine/core": "^5.1.0",
     "@mantine/hooks": "^5.1.0",
