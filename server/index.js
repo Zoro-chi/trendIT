@@ -20,7 +20,12 @@ app.use(express.static("Public"));
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5000',
+    credentials: true,
+
+}
+app.use(cors(corsOptions));
 
 const connectDB = async () => {
   try {
@@ -52,9 +57,9 @@ if (
 ) {
   const root = path.join(__dirname, "../", "client-side", "build");
   app.use(express.static(root));
-  app.get("*", (req, res) => {
-    res.sendFile("index.html", { root });
-  });
+  // app.get("*", (req, res) => {
+  //   res.sendFile("index.html", { root });
+  // });
 }
 
 const port = process.env.PORT || 5000;
