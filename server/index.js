@@ -57,9 +57,9 @@ if (
 ) {
   const root = path.join(__dirname, "../", "client-side", "build");
   app.use(express.static(root));
-  // app.get("*", (req, res) => {
-  //   res.sendFile("index.html", { root });
-  // });
+  app.get("/api", (req, res) => {
+    res.sendFile("index.html", { root });
+  });
 }
 
 const port = process.env.PORT || 5000;
