@@ -20,11 +20,11 @@ app.use(express.static("Public"));
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-// const corsOptions = {
-//     origin: 'http://localhost:5000',
-//     credentials: true,
+const corsOptions = {
+    origin: 'http://localhost:5000',
+    credentials: true,
 
-// }
+}
 app.use(cors());
 
 const connectDB = async () => {
