@@ -36,7 +36,7 @@ const connectDB = async () => {
 connectDB();
 
 //   USAGE OF ROUTES
-app.use("/images", express.static("Images"));
+app.use("/api/images", express.static("Images"));
 app.use("/api/auth", AuthRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/post", PostRoute);
