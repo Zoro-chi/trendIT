@@ -25,7 +25,6 @@ function Posts(props) {
     const post = async () => {
       let post = fetchPosts();
       post = await post;
-    
       setDbPosts(post.data);
     };
     post();
@@ -37,7 +36,7 @@ function Posts(props) {
 
   if (!dbPosts) return "No posts";
 
-  let userPosts = dbPosts.filter((post) => post.userId === params.id);ost
+  let userPosts = dbPosts.filter((post) => post.userId === params.id);
 
   return (
     // <div className="posts">
