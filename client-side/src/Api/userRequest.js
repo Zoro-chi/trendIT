@@ -1,7 +1,21 @@
 import axios from "axios";
 
+const getBaseUrl = () => {
+  let url 
+  switch (process.env.NODE_ENV) {
+    case "production":
+      url = "https://trenddit.herokuapp.com"
+      break;
+    
+    case "development":
+      default:
+      url = "http://localhost:5000" 
+  }
+  return url 
+}
+
 const API = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: getBaseUrl(),
 });
 
 // API.interceptors.request.use((req) => {
