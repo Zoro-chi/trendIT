@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { FaPrescription } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+
 import { followUser, unFollowUser } from "../../Actions/userAction";
+import followerspfp from "../../images/followerspfp.png"
+
 
 const User = ({ person, id }) => {
   let publicFolder
@@ -29,9 +32,10 @@ const User = ({ person, id }) => {
       <div>
         <img
           src={
-            FaPrescription.coverPicture
-              ? publicFolder + "/" + person.profilePicture
-              : publicFolder + "/" + "defaultPfp.png"
+            // FaPrescription.coverPicture
+            //   ? publicFolder + "/" + person.profilePicture
+            //   : publicFolder + "/" + "defaultPfp.png"
+            followerspfp
           }
           alt=""
           className="followerImg"

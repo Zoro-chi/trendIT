@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { uploadImage, uploadPost } from "../../Actions/uploadActions.js";
 
 import "./PostShare.css";
-import profilepic from "../../images/profilepic.jpg";
+import defaultPfp from "../../images/defaultPfp.jpg"
+
 
 function PostShare() {
   const [image, setImage] = useState(null);
@@ -59,9 +60,10 @@ function PostShare() {
     <div className="postshare">
       <img
         src={
-          user.coverPicture
-            ? serverPublic + "/" + user.profilePicture
-            : serverPublic + "/" + "defaultPfp.jpg"
+          // user.coverPicture
+          //   ? serverPublic + "/" + user.profilePicture
+          //   : serverPublic + "/" + "defaultPfp.jpg"
+          defaultPfp
         }
         alt=""
       />

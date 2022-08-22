@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import "./ProfileCard.css";
 import { getTimelinePosts as gt } from "../../Api/postRequest.js";
+import defaultCover from "../../images/defaultCover.jpg"
+import defaultPfp from "../../images/defaultPfp.jpg"
 
 function ProfileCard({ location }) {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -16,12 +18,6 @@ function ProfileCard({ location }) {
     post = await post;
     return post;
   };
-
-  if (process.env.NODE_ENV == "production") {
-    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_PROD
-  } else {
-    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_DEV
-  }
 
   useEffect(() => {
     const post = async () => {
@@ -36,19 +32,16 @@ function ProfileCard({ location }) {
     <div className="profileCard">
       <div className="profileImages">
         <img
-          src={
-            user.coverPicture
-              ? publicFolder + "/" + user.coverPicture
-              : publicFolder + "/" + "defaultCover.jpg"
-          }
+          src={defaultCover}
           alt="profile banner"
         />
         <img
           src={
-            user.coverPicture
-              ? publicFolder + "/" + user.profilePicture
-              : publicFolder + "/" + "defaultPfp.jpg"
-          }
+            // user.coverPicture
+            //   ? publicFolder + "/" + user.profilePicture
+            //   : publicFolder + "/" + "defaultPfp.jpg"
+            defaultPfp
+          } 
           alt="profile"
         />
       </div>
