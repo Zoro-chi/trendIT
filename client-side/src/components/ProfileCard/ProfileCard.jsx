@@ -9,7 +9,7 @@ function ProfileCard({ location }) {
   const { user } = useSelector((state) => state.authReducer.authData);
   const posts = useSelector((state) => state.postReducer.posts);
   const [dbPosts, setDbPosts] = useState([]);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  let publicFolder;
 
   const fetchPosts = async () => {
     let post = gt(user._id);
@@ -17,11 +17,16 @@ function ProfileCard({ location }) {
     return post;
   };
 
+  if (process.env.NODE_ENV == "production") {
+    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_PROD
+  } else {
+    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_DEV
+  }
+
   useEffect(() => {
     const post = async () => {
       let post = fetchPosts();
       post = await post;
-      // console.log(post.data);
       setDbPosts(post.data);
     };
     post();
@@ -33,16 +38,16 @@ function ProfileCard({ location }) {
         <img
           src={
             user.coverPicture
-              ? serverPublic + "/" + user.coverPicture
-              : serverPublic + "/" + "defaultCover.jpg"
+              ? publicFolder + "/" + user.coverPicture
+              : publicFolder + "/" + "defaultCover.jpg"
           }
           alt="profile banner"
         />
         <img
           src={
             user.coverPicture
-              ? serverPublic + "/" + user.profilePicture
-              : serverPublic + "/" + "defaultPfp.jpg"
+              ? publicFolder + "/" + user.profilePicture
+              : publicFolder + "/" + "defaultPfp.jpg"
           }
           alt="profile"
         />

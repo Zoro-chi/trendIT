@@ -20,11 +20,6 @@ app.use(express.static("Public"));
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-// const corsOptions = {
-//     origin: 'http://localhost:5000',
-//     credentials: true,
-
-// }
 app.use(cors());
 
 const connectDB = async () => {
@@ -41,11 +36,12 @@ const connectDB = async () => {
 connectDB();
 
 //   USAGE OF ROUTES
+app.use("/images", express.static("Images"));
 app.use("/api/auth", AuthRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/post", PostRoute);
 app.use("/api/upload", uploadRoute);
-app.use("/images", express.static("Images"));
+
 
 // HEROKU DEPLOY
 const __filename = fileURLToPath(import.meta.url);

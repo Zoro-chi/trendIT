@@ -4,12 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { followUser, unFollowUser } from "../../Actions/userAction";
 
 const User = ({ person, id }) => {
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  let publicFolder
   const { user } = useSelector((state) => state.authReducer.authData);
   const dispatch = useDispatch();
   const [following, setFollowing] = useState(
     person.followers.includes(user._id)
   );
+
+  if (process.env.NODE_ENV == "production") {
+    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_PROD
+  } else {
+    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_DEV
+  }
 
   const handleFollow = () => {
     following
@@ -24,8 +30,8 @@ const User = ({ person, id }) => {
         <img
           src={
             FaPrescription.coverPicture
-              ? serverPublic + "/" + person.profilePicture
-              : serverPublic + "/" + "defaultPfp.png"
+              ? publicFolder + "/" + person.profilePicture
+              : publicFolder + "/" + "defaultPfp.png"
           }
           alt=""
           className="followerImg"

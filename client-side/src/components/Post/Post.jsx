@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { likePost } from "../../Api/postRequest";
 
 function Post(props) {
+  let publicFolder;
   const { data } = props;
   const { user } = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(data.likes.includes(user._id));
@@ -20,12 +21,18 @@ function Post(props) {
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
   };
 
+  if (process.env.NODE_ENV == "production") {
+    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_PROD
+  } else {
+    publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_DEV
+  }
+
   return (
     <div className="post">
       <img
         src={
           data.image
-            ? process.env.REACT_APP_PUBLIC_FOLDER + "/" + data.image
+            ? publicFolder + "/" + data.image
             : ""
         }
         alt=""
