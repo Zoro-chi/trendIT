@@ -8,8 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { uploadImage, uploadPost } from "../../Actions/uploadActions.js";
 
 import "./PostShare.css";
-import defaultPfp from "../../images/defaultPfp.jpg"
-
+import defaultPfp from "../../images/defaultPfp.jpg";
 
 function PostShare() {
   const [image, setImage] = useState(null);
@@ -85,10 +84,6 @@ function PostShare() {
           <div className="option" style={{ color: "green" }}>
             <MdOutlineLocationOn style={{ height: "20px", width: "20px" }} />
             Location
-          </div>
-          <div className="option" style={{ color: "darkGoldenrod" }}>
-            <GoCalendar style={{ height: "20px", width: "20px" }} />
-            Schedule
           </div>
           <button
             className="button psButton"

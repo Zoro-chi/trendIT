@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPrescription } from "react-icons/fa";
+import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 
 import { followUser, unFollowUser } from "../../Actions/userAction";
@@ -29,22 +30,25 @@ const User = ({ person, id }) => {
 
   return (
     <div key={id} className="follower">
-      <div>
-        <img
-          src={
-            // FaPrescription.coverPicture
-            //   ? publicFolder + "/" + person.profilePicture
-            //   : publicFolder + "/" + "defaultPfp.png"
-            followerspfp
-          }
-          alt=""
-          className="followerImg"
-        />
-        <div className="name">
-          <span> {person.firstname} </span>
-          <span> {person.username} </span>
-        </div>
+      <div style={{ cursor: "pointer" }}>
+        <Link to={`/profile/${person._id}`} style={{ textDecoration: "none", color: "inherit",  }}>
+          <img
+            src={
+              // FaPrescription.coverPicture
+              //   ? publicFolder + "/" + person.profilePicture
+              //   : publicFolder + "/" + "defaultPfp.png"
+              followerspfp
+            }
+            alt=""
+            className="followerImg"
+          />
+        </Link>  
+          <div className="name">
+            <span> {person.firstname} </span>
+            <span> {person.username} </span>
+          </div>
       </div>
+      
       <button
         className={
           following

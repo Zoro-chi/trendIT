@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   padding: 1rem;
-  background-color: #f6f5f58c;
+  background-color: #66cdaa6b;
   gap: 1rem;
   border-radius: 1rem;
 }
@@ -20,6 +20,15 @@
   gap: 1.5rem;
 }
 .postReact svg {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+}
+.description {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 7px;
+}
+.poster {
+  display: flex;
+  gap: 1rem;
 }

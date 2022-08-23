@@ -59,27 +59,31 @@ function Auth() {
           <h3> {isSignUp ? "Sign Up" : "Log In"}</h3>
 
           {isSignUp && (
-            <div>
-              <input
-                type="text"
-                placeholder="First Name"
-                className="infoInput"
-                name="firstname"
-                value={data.firstname}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="infoInput"
-                name="lastname"
-                value={data.lastname}
-                onChange={handleChange}
-              />
+            <div id="nameDiv">
+              <div>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="infoInput"
+                  name="firstname"
+                  value={data.firstname}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="infoInput"
+                  name="lastname"
+                  value={data.lastname}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           )}
 
-          <div>
+          <div className="username">
             <input
               type="text"
               className="infoInput"
@@ -125,7 +129,7 @@ function Auth() {
             * Password does not match
           </span>
 
-          <div>
+          <div className="acc">
             <span
               onClick={() => {
                 setIsSignUp((prev) => !prev);
