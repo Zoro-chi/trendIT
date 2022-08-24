@@ -15,6 +15,10 @@
   .home {
     display: flex;
     flex-flow: column;
+    align-items: center;
+  }
+  .postside {
+    width: 85vw;
   }
   .postside > .postshare {
     align-self: center;

@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 
 import "./ProfileCard.css";
 import { getTimelinePosts as gt } from "../../Api/postRequest.js";
-import defaultCover from "../../images/defaultCover.jpg"
-import defaultPfp from "../../images/defaultPfp.jpg"
+import defaultCover from "../../images/defaultCover.jpg";
+import defaultPfp from "../../images/defaultPfp.jpg";
 
 function ProfileCard({ location }) {
   const { user } = useSelector((state) => state.authReducer.authData);
   const posts = useSelector((state) => state.postReducer.posts);
   const [dbPosts, setDbPosts] = useState([]);
-  let publicFolder;
 
   const fetchPosts = async () => {
     let post = gt(user._id);
@@ -31,19 +30,8 @@ function ProfileCard({ location }) {
   return (
     <div className="profileCard">
       <div className="profileImages">
-        <img
-          src={defaultCover}
-          alt="profile banner"
-        />
-        <img
-          src={
-            // user.coverPicture
-            //   ? publicFolder + "/" + user.profilePicture
-            //   : publicFolder + "/" + "defaultPfp.jpg"
-            defaultPfp
-          } 
-          alt="profile"
-        />
+        <img src={defaultCover} alt="profile banner" />
+        <img src={defaultPfp} alt="profile" />
       </div>
 
       <div className="profilename">

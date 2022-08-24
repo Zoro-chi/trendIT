@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { MdSlowMotionVideo } from "react-icons/md";
 import { MdOutlineLocationOn } from "react-icons/md";
-import { GoCalendar } from "react-icons/go";
 import { FaTimes } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { uploadImage, uploadPost } from "../../Actions/uploadActions.js";
@@ -17,7 +17,7 @@ function PostShare() {
   const desc = useRef();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.postReducer.uploading);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  let width = window.innerWidth;
 
   const onImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -57,15 +57,13 @@ function PostShare() {
 
   return (
     <div className="postshare">
-      <img
-        src={
-          // user.coverPicture
-          //   ? serverPublic + "/" + user.profilePicture
-          //   : serverPublic + "/" + "defaultPfp.jpg"
-          defaultPfp
-        }
-        alt=""
-      />
+      {width < 600 ? (
+        <Link to={`/profile/${user._id}`}>
+          <img src={defaultPfp} alt="" />
+        </Link>
+      ) : (
+        <img src={defaultPfp} alt="" />
+      )}
       <div>
         <input ref={desc} type="text" placeholder="What's up?" required />
         <div className="postOptions">

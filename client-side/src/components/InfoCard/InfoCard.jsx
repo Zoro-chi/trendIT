@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
 import "./InfoCard.css";
 import ProfileModal from "../ProfileModal/ProfileModal.jsx";
@@ -30,7 +29,7 @@ function InfoCard() {
         <span>
           <b> Status </b>
         </span>
-        <span> In Relationship </span>
+        <span> Single </span>
       </div>
 
       <div className="info">

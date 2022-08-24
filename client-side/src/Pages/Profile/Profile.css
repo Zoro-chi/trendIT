@@ -11,6 +11,9 @@
 }
 
 @media all and (max-width: 500px) {
+  .profileCenter {
+    width: 90vw;
+  }
   .profile .profileside {
     display: none;
   }
@@ -20,6 +23,7 @@
   .profile {
     display: flex;
     flex-flow: column;
+    align-items: center;
   }
   .postshare {
     width: 95vw;

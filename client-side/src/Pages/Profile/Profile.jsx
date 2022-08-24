@@ -15,7 +15,6 @@ function Profile() {
         <ProfileCard location="profilePage" />
         <PostSide />
       </div>
-
       <RightSide />
     </div>
   );
