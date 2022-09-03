@@ -27,7 +27,7 @@ npm run start
 
 ## Optimizations
 I used JWT as authentication but when it came to implementing the logout function i had to improvise which made my app react differently than i would have liked.
-Passport and gooogle-auth20 is a good solution I came across which has a logout method implemented on it.
+Passport and gooogle-auth20 is a good solution I came across which has a logout method implemented on it
 
 
 
