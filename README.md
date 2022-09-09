@@ -1,6 +1,6 @@
 # trenddIT
 
-A social media clone
+A social media clone.
 
 ![trenddIT](https://user-images.githubusercontent.com/96382060/185646759-6db427fc-716c-450e-baa3-08e9335fb043.png)
 
